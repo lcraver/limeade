@@ -20,9 +20,9 @@
 
 
 	spl_autoload_register(function($class) {
-		require_once 'app/classes/' . $class . '.php';
+		require_once '../app/classes/' . $class . '.php';
 	});
 
-	require_once('app/functions/Sanitize.php');
+	require_once '../app/functions/Sanitize.php';
 	
 ?>
