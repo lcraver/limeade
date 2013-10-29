@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 	/*
 		* Build App
 	*/
-	build {
+	build: {
 
 		less: {
 			development: {
@@ -57,10 +57,10 @@ module.exports = function(grunt) {
 		* App Themes
 	*/
 
-	theme-default: {
+	theme_default: {
 
 		//define default theme directory
-		var dir-default =y ['src/app/themes/default/**'];
+		var dir_default = ['src/app/themes/default/**'];
 
 		less: {
 
@@ -72,16 +72,16 @@ module.exports = function(grunt) {
 
 		//watch default theme production files for changes
 		watch: {
-			files: dir-default,
+			files: dir_default,
 			tasks: ['less'],
 		}
 
 	}, 
 
-	theme-dark: {
+	theme_dark: {
 
 		//define dark theme directory
-		var  dir-dark = ['src/app/themes/dark/**'];
+		var  dir_dark = ['src/app/themes/dark/**'];
 
 		less: {
 
@@ -93,16 +93,16 @@ module.exports = function(grunt) {
 
 		//watch dark theme production files for changes
 		watch: {
-			files: dir-dark,
+			files: dir_dark,
 			tasks: ['less'],
 		}
 
 	},
 
-	theme-light: {
+	theme_light: {
 
 		//define light theme directory
-		var dir-light = ['src/app/themes/light/**'];
+		var dir_light = ['src/app/themes/light/**'];
 
 		less: {
 
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 
 		//watch light theme production files for changes
 		watch: {
-			files: dir-light,
+			files: dir_light,
 			tasks: ['less'],
 		}
 
