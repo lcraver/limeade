@@ -4,62 +4,120 @@ module.exports = function(grunt) {
 	
 	// project config
 	grunt.initConfig({ 
-		
-	// combine Less
-	less: {
-		development: {
-			options: {
-				yuicompress: false,
-				report: 'false'
+			
+	/*
+		* Build App
+	*/
+	build {
+
+		less: {
+			development: {
+				options: {
+					yuicompress: false,
+					report: 'false'
+				},
+				files: {
+					"src/lib/css/styles.css" : "src/lib/less/*.less"
+				}
 			},
-			files: {
-				"src/css/styles.css" : "src/less/*.less"
+			production: {
+				options: {
+					yuicompress: true,
+					report: 'gzip'
+				},
+				files: {
+					"dist/lib/css/styles.min.css" : "dist/lib/css/styles.css"
+				}
 			}
 		},
-		production: {
-			options: {
-				paths: ["assets/dist/css"],
-				yuicompress: true,
-				report: 'gzip'
-			},
-			files: {
-				"dist/css/styles.min.css" : "src/css/styles.css"
+
+		uglify: { 
+			my_target: {
+				files: {
+					'dist/lib/js/post.min.js': [ // minify the following file(s) into post.min.js
+						'src/lib/js/post.js'
+						],
+					'dist/lib/js/pre.min.js': [ // minify the following file(s) into pre.min.js
+						'src/lib/js/pre.js'
+						]	
+				}
 			}
+		},
+
+		watch: {
+			files: ['src/lib/**'],
+			tasks: ['less','uglify'],
 		}
+
 	},
-	
-	// lint CSS
-	/*csslint: {
-		options: {
-			// load lint config file
-			csslintrc: '.csslintrc'
+
+
+
+	/*
+		* App Themes
+	*/
+
+	theme-default: {
+
+		//define default theme directory
+		var dir-default =y ['src/app/themes/default/**'];
+
+		less: {
+
 		},
-		lax: {
-			options: {
-				import: 2
-			},
-			src: ['dist/css/*.css']
+
+		csslint: {
+
+		},
+
+		//watch default theme production files for changes
+		watch: {
+			files: dir-default,
+			tasks: ['less'],
 		}
-	},*/
-	
-	// minify JavaScripts
-	uglify: { 
-		my_target: {
-			files: {
-				'dist/js/post.min.js': [ // minify the following file(s) into post.min.js
-					'src/js/post.js'
-					],
-				'dist/js/pre.min.js': [ // minify the following file(s) into pre.min.js
-					'src/js/pre.js'
-					]	
-			}
+
+	}, 
+
+	theme-dark: {
+
+		//define dark theme directory
+		var  dir-dark = ['src/app/themes/dark/**'];
+
+		less: {
+
+		},
+
+		csslint: {
+
+		},
+
+		//watch dark theme production files for changes
+		watch: {
+			files: dir-dark,
+			tasks: ['less'],
 		}
-	},	
-	
-	// watch all files for changes 
-	watch: {
-		files: ['src/**'],
-		tasks: ['less','uglify'],
+
+	},
+
+	theme-light: {
+
+		//define light theme directory
+		var dir-light = ['src/app/themes/light/**'];
+
+		less: {
+
+		},
+
+		csslint: {
+
+		},
+
+		//watch light theme production files for changes
+		watch: {
+			files: dir-light,
+			tasks: ['less'],
+		}
+
 	}
 	
 	});
@@ -67,11 +125,17 @@ module.exports = function(grunt) {
 	// load node_module
 	grunt.loadNpmTasks('grunt-contrib-watch');	
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify'); 
 		
-	
-	// create default task 
-	grunt.registerTask('default',['watch']);			
+	// register default task 
+	grunt.registerTask('default',['build']);	
+
+	// register theme tasks
+	grunt.registerTask('theme-default-dev',['theme-default']);		
+	grunt.registerTask('theme-dark-dev',['theme-dark']);		
+	grunt.registerTask('theme-light-dev',['theme-light']);	
+
 }
