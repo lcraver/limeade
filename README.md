@@ -1,4 +1,4 @@
-LimeWorks_PHP_UserSystem
+Limeade
 ========================
 
-A lightweight / barebones PHP OOP Login / Register System. Made by Lime Studios.
+A lightweight, barebones PHP OOP login & register System. Made by Lime Studios.
