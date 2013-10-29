@@ -1,6 +1,9 @@
 module.exports = function(grunt) {
 
 	"use strict";
+
+	//define varibles 
+	var = ;
 	
 	// project config
 	grunt.initConfig({ 
@@ -56,7 +59,6 @@ module.exports = function(grunt) {
 	/*
 		* App Themes
 	*/
-
 	theme_default: {
 
 		//define default theme directory
@@ -118,10 +120,29 @@ module.exports = function(grunt) {
 			tasks: ['less'],
 		}
 
-	}
+	},
+
+	compliment: {
+
+		var defaults = ['No one cares to customize me.'];
+
+		var compliments = grunt.config('compliment') || defaults;
+		var index = Math.floor(Math.random() * compliments.length);
+
+		grunt.log.writeIn(compliments[index]);
+
+		compliment: [
+		    'You are so awesome!',
+		    'You are a funny, funny kid.',
+		    'Your code sucks.',
+		    'Lulz cats.'
+	    ]
+
+  	}
 	
 	});
 	
+
 	// load node_module
 	grunt.loadNpmTasks('grunt-contrib-watch');	
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -130,12 +151,48 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify'); 
 		
+
 	// register default task 
 	grunt.registerTask('default',['build']);	
 
-	// register theme tasks
-	grunt.registerTask('theme-default-dev',['theme-default']);		
-	grunt.registerTask('theme-dark-dev',['theme-dark']);		
-	grunt.registerTask('theme-light-dev',['theme-light']);	
+
+	//default theme
+	grunt.registerTask('theme_default', 'Watch dev files for the default theme', 
+	function() {
+
+		grunt.log.write('You are watching the default theme.').ok();
+
+	});	
+
+	//dark theme
+	grunt.registerTask('theme_dark', 'Watch dev files for the dark theme', 
+	function() {
+
+		 if (failureOfSomeKind) {
+			grunt.log.error('');
+		}
+
+			// Fail by returning false if this task had errors
+			if (ifErrors) { return false; }
+
+		grunt.log.write('You are watching the dark theme.').ok();
+
+	});	
+
+
+	//light theme
+	grunt.registerTask('theme_light', 'Watch dev files for the light theme', 
+	function() {
+
+		if (failureOfSomeKind) {
+			grunt.log.error('');
+		}
+
+			// Fail by returning false if this task had errors
+			if (ifErrors) { return false; }
+
+		grunt.log.write('You are watching the light theme.').ok();
+
+	});		
 
 }
