@@ -1,4 +1,4 @@
-#Order of the Arrow - Boy Scouts of America - Web Staff
-The following web staff members have worked on the revelopment and design of the OA national website
+The following people have contributed to this project:
 
-Patrick Burtchaell (http://www.twitter.com/pburtchaell/)
+- Liam Craver (http://limestudios.net/)
+- Patrick Burtchaell (http://www.twitter.com/pburtchaell/)
