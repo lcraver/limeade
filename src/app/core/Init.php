@@ -3,6 +3,10 @@
 	session_start();
 
 	$GLOBALS['config'] = array(
+		'site' => array(
+			'url' => 'limestudios.net/limeade',
+			'title' => 'Limeade'
+		),
 		'mysql' => array(
 			'host' => '127.0.0.1',
 			'username' => 'root',
