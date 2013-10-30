@@ -44,6 +44,12 @@
 									$this->addError("{$item} already exists");
 								}
 							break;
+
+							case 'email':
+								if(filter_var($value, FILTER_VALIDATE_EMAIL) != true) {
+									$this->addError("{$item} must be a valid email address");
+								}
+							break;
 						}
 					}
 				}
