@@ -15,7 +15,8 @@
 					'required' => true,
 					'min' => 6,
 					'max' => 128,
-					'email' => true
+					'email' => true,
+					'unique' => 'users'
 				),
 				'username' => array(
 					'required' => true,
@@ -40,15 +41,21 @@
 
 				try {
 
+					$emailCode = Hash::emailCode(Input::get('username'));
+
 					$user->create(array(
 						'username' => Input::get('username'),
 						'password' => Hash::make(Input::get('password'), $salt),
 						'salt' => $salt,
 						'name' => Input::get('name'),
 						'email' => Input::get('email'),
+						'email_code' => $emailCode,
 						'joined' => date('Y-m-d H:i:s'),
 						'group' => 1
 					));
+
+					$user->email(Input::get('email'), 'Activate your account', "Hello ".Input::get('name').",\n\nYou need to activate your limeade account, so please use the link below:\n http://".Config::get('site/url')."/activate.php?email=".Input::get('email')."&email_code={$emailCode} \n\n- Lime Studios
+					");
 
 					Session::flash('home', 'You have been registered and can now login!');
 					header('Location: index.php');
