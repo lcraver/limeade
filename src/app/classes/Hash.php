@@ -6,11 +6,15 @@
 		}
 
 		public static function salt($length) {
-			return mcrypt_create_iv($length);
+			return "$2y$10$".bin2hex(openssl_random_pseudo_bytes($length));
 		}
 
 		public static function unique() {
 			return self::make(uniqid());
+		}
+
+		public static function emailCode($username) {
+			return md5($username + microtime());
 		}
 	}
 
