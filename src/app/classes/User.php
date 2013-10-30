@@ -20,7 +20,11 @@
 		}
 
 		public function email($to, $subject, $body) {
-			mail($to, $subject, $body, "From: admin@limeade.net");
+			if(mail($to, $subject, $body, "From: admin@limeade.net")) {
+				throw new Exception('There was a problem sending your activation email. So your account cannot be created at this time.');
+			}
+
+			return true;
 		}
 	}
 

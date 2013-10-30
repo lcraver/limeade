@@ -5,7 +5,8 @@
 	$GLOBALS['config'] = array(
 		'site' => array(
 			'url' => 'limestudios.net/limeade',
-			'title' => 'Limeade'
+			'title' => 'Limeade',
+			'email_activation' => false
 		),
 		'mysql' => array(
 			'host' => '127.0.0.1',

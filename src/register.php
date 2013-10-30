@@ -43,6 +43,13 @@
 
 					$emailCode = Hash::emailCode(Input::get('username'));
 
+					if(Config::get('site/email_activation')) {
+						$user->email(Input::get('email'), 'Activate your account', "Hello ".Input::get('name').",\n\nYou need to activate your limeade account, so please use the link below:\n http://".Config::get('site/url')."/activate.php?email=".Input::get('email')."&email_code={$emailCode} \n\n- Lime Studios");
+						$active = 0;
+					} else {
+						$active = 1;
+					}
+
 					$user->create(array(
 						'username' => Input::get('username'),
 						'password' => Hash::make(Input::get('password'), $salt),
@@ -51,14 +58,12 @@
 						'email' => Input::get('email'),
 						'email_code' => $emailCode,
 						'joined' => date('Y-m-d H:i:s'),
-						'group' => 1
+						'group' => 1,
+						'active' => $active
 					));
 
-					$user->email(Input::get('email'), 'Activate your account', "Hello ".Input::get('name').",\n\nYou need to activate your limeade account, so please use the link below:\n http://".Config::get('site/url')."/activate.php?email=".Input::get('email')."&email_code={$emailCode} \n\n- Lime Studios
-					");
-
 					Session::flash('home', 'You have been registered and can now login!');
-					header('Location: index.php');
+					Redirect::to('index.php');
 
 				} catch(Exception $e) {
 					die($e->getMessage());
