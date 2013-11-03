@@ -19,6 +19,12 @@
 			}
 		}
 
+		public function check($fields = array()) {
+			if(!$this->_db->get('users', $fields)) {
+				throw new Exception('There was a problem logging into your account.');
+			}
+		}
+
 		public function email($to, $subject, $body) {
 			if(mail($to, $subject, $body, "From: admin@limeade.net")) {
 				throw new Exception('There was a problem sending your activation email. So your account cannot be created at this time.');

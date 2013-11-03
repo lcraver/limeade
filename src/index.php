@@ -6,4 +6,7 @@
 		echo '<p>' . Session::flash('home') . '</p>';
 	}
 
+	print_r(DB::getInstance()->check('users', array(
+						'username' => 'limestudios'
+					)));
 ?>

@@ -55,6 +55,8 @@
 				$operator 	= $where[1];
 				$value 		= $where[2];
 
+				print_r($where);
+
 				if(in_array($operator, $operators)) {
 					$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
 					
@@ -69,6 +71,31 @@
 
 		public function get($table, $where) {
 			return $this->action('SELECT *', $table, $where);
+		}
+
+		public function check($table, $fields = array()) {
+			$where = array();
+
+			foreach($fields as $item => $value) {
+				//$sql .= "SELECT * FROM {$table} WHERE {$item} = {$value};"
+				array_push($where, array($item, '=', $value));
+			}
+
+			$operators = array('=', '>', '<', '>=', '<=');
+
+				$field 		= $where[0][0];
+				$operator 	= $where[0][1];
+				$value 		= $where[0][2];
+
+				if(in_array($operator, $operators)) {
+					$sql = "SELECT * FROM {$table} WHERE {$field} {$operator} ?";
+					
+					if(!$this->query($sql, array($value))->error()) {
+						return $this->_results;
+					}
+				}
+
+				return false;
 		}
 
 		public function delete($table, $where) {
