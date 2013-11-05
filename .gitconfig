@@ -1,0 +1,6 @@
+#Add this to your .gitConfig file in your .git folder
+#To to execute type at git bash: git log-json > ChangeLog.json
+#It will save the output to a file named ChangeLog.json
+#You can use this file to create your own pretty version of the ChangeLog
+[alias]
+        log-json = !git log --pretty=format:'\"%h\": {%n  \"commit\": \"%H\",%n  \"author\": \"%an <%ae>\",%n  \"date\": \"%ai\",%n  \"message\": \"%s\"%n},'
