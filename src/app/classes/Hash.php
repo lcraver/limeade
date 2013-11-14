@@ -6,7 +6,8 @@
 		}
 
 		public static function salt($length) {
-			return "$2y$10$".bin2hex(openssl_random_pseudo_bytes($length));
+			//return "$2y$10$".bin2hex(openssl_random_pseudo_bytes($length));
+			return mcrypt_create_iv($length);
 		}
 
 		public static function unique() {

@@ -12,7 +12,7 @@
 			'host' => '127.0.0.1',
 			'username' => 'root',
 			'password' => '',
-			'db' => 'LimeWorksSystem'
+			'db' => 'limeade'
 		),
 		'remember' => array(
 			'cookie_name' => 'hash',

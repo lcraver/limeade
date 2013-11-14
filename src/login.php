@@ -20,6 +20,15 @@
 			if($validate->passed()) {
 				$user = new User();
 
+				$login = $user->login(Input::get('username'), Input::get('password'));
+
+				if($login) {
+					Redirect::to('index.php');
+				} else {
+					echo '<p>Sorry, logging in failed!</p>';
+				}
+
+				/*
 				try {
 					$user->check(array(
 						'username' => Input::get('username'),
@@ -32,7 +41,7 @@
 
 				} catch(Exception $e) {
 					die($e->getMessage());
-				}
+				}*/
 			} else {
 				foreach ($validation->errors() as $error) {
 					echo $error, "<br>";
@@ -50,8 +59,7 @@
 	</div>
 	<div class="field">
 		<label for="password">Password</label>
-		<input type="password" name="password" id="password" value="<?php echo escape(Input::get('password')); ?>">
-	</div>
+		<input type="password" name="password" id="password" autocomplete="off">
 
 	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	<input type="submit" value="Login">

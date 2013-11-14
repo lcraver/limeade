@@ -55,7 +55,7 @@
 				$operator 	= $where[1];
 				$value 		= $where[2];
 
-				print_r($where);
+				//print_r($where);
 
 				if(in_array($operator, $operators)) {
 					$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
