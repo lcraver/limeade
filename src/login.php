@@ -20,7 +20,8 @@
 			if($validate->passed()) {
 				$user = new User();
 
-				$login = $user->login(Input::get('username'), Input::get('password'));
+				$remember = (Input::get('remember') === 'on') ? true : false;
+				$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
 				if($login) {
 					Redirect::to('index.php');
@@ -28,20 +29,6 @@
 					echo '<p>Sorry, logging in failed!</p>';
 				}
 
-				/*
-				try {
-					$user->check(array(
-						'username' => Input::get('username'),
-						'password' => Hash::make(Input::get('password'), $salt),
-						'active' => 1
-					));
-
-					Session::flash('home', 'You successfully logged in!');
-					Redirect::to('index.php');
-
-				} catch(Exception $e) {
-					die($e->getMessage());
-				}*/
 			} else {
 				foreach ($validation->errors() as $error) {
 					echo $error, "<br>";
@@ -60,6 +47,12 @@
 	<div class="field">
 		<label for="password">Password</label>
 		<input type="password" name="password" id="password" autocomplete="off">
+	</div>
+	<div class="field">
+		<label for="remember">
+			<input type="checkbox" name="remember" id="remember"> Remember Me
+		</label>
+	</div>
 
 	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	<input type="submit" value="Login">
