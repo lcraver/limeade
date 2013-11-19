@@ -1,0 +1,26 @@
+p.center-ver-horz {
+	line-height: 100px;
+	position: relative;
+	height: 85px;
+	width: 400px;
+	left: 50%;
+	top: 50%;
+	margin-top: -50px;
+	margin-left: -200px;
+	font: 72px arial bold;
+	color: rgba(140,200,75,1);
+	text-align: center;
+	padding: 0;
+	background-color: rgba(70,72,62,1);
+}
+
+body {
+	background-color: rgba(247,247,247,1);
+	color: rgba(210,216,186,1);
+	font: 16px arial bold;
+}
+
+a {
+	color: rgba(140,200,75,1);
+	text-decoration: none;
+}

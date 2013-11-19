@@ -1,1 +1,3 @@
-~This is not the page you are looking for~
+<body>
+	<p class="center-ver-horz">404.</p>
+</body>
