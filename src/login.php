@@ -6,12 +6,12 @@
 		if(Token::check(Input::get('token'))) {
 			$validate = new Validate();
 			$validation = $validate->check($_POST, array(
-				'username' => array(
+				'Username' => array(
 					'required' => true,
 					'min' => 2,
 					'max' => 20
 				),
-				'password' => array(
+				'Password' => array(
 					'required' => true,
 					'min' => 6
 				)
@@ -20,40 +20,54 @@
 			if($validate->passed()) {
 				$user = new User();
 
-				$remember = (Input::get('remember') === 'on') ? true : false;
-				$login = $user->login(Input::get('username'), Input::get('password'), $remember);
+				$remember = (Input::get('Remember') === 'on') ? true : false;
+				$login = $user->login(Input::get('Username'), Input::get('Password'), $remember);
 
 				if($login) {
 					Redirect::to('index.php');
 				} else {
-					echo '<p>Sorry, logging in failed!</p>';
+					echo '<div id="flashTop">Sorry, logging in failed!</div>';
 				}
 
 			} else {
+
+				echo '<div id="flashTop">';
+
 				foreach ($validation->errors() as $error) {
 					echo $error, "<br>";
 				}
+
+				echo '</div>';
 			}
 		}
 	}
 
 ?>
 
-<form action="" method="post">
-	<div class="field">
-		<label for="username">Username</label>
-		<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>">
-	</div>
-	<div class="field">
-		<label for="password">Password</label>
-		<input type="password" name="password" id="password" autocomplete="off">
-	</div>
-	<div class="field">
-		<label for="remember">
-			<input type="checkbox" name="remember" id="remember"> Remember Me
-		</label>
-	</div>
+        <h1 class="large">Login</h1>
 
-	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-	<input type="submit" value="Login">
-</form>
+        <div class="content">
+            <p>
+				<form class="pure-form" action="" method="post">
+					<fieldset>
+
+						<input type="text" name="Username" id="Username" value="<?php echo escape(Input::get('username')); ?>" placeholder="Username">
+
+						<input type="password" name="Password" id="Password" autocomplete="off" placeholder="Password">
+
+						<label for="Remember">
+							<input type="checkbox" name="Remember" id="Remember"> Remember Me
+						</label>
+
+						<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+						
+						<button type="submit" class="pure-button pure-button-primary">
+							Login
+						</button>
+
+					</fieldset>
+				</form>
+			</p>
+        </div>
+    </div>
+</div>

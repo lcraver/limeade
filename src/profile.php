@@ -14,10 +14,14 @@
 		}
 		?>
 
-		<h3><?php echo escape($data->username); ?></h3>
-		<p>Full Name : <?php echo escape($data->name); ?></p>
-
+		<section>
+			<h3><?php echo escape($data->username); ?></h3>
+			<p>Full Name : <?php echo escape($data->name); ?></p>
+		</section>
 		<?php
 	}
 
 ?>
+
+    </div>
+</div>

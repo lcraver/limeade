@@ -39,12 +39,16 @@
 	}
 ?>
 
-<form action="" method="post">
-	<div class="field">
-		<label for="name">Name</label>
-		<input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
-	</div>
+<section>
+	<article>
+		<form action="" method="post">
+			<div class="field">
+				<label for="name">Name</label>
+				<input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
+			</div>
 
-	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-	<input type="submit" value="Update">
-</form>
+			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+			<input type="submit" value="Update">
+		</form>
+	</article>
+</section>
