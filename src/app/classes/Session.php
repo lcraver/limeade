@@ -25,7 +25,7 @@
 				self::delete($name);
 				return $session;
 			} else {
-				self::put($name, $string);
+				self::put($name, '<div id="flash">'.$string.'</div>');
 			}
 		}
 	}
