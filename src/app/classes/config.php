@@ -50,9 +50,11 @@
 				$config = $db->get('config', array('setting_name', '=', $path[0]));
 				$config = $config->results()[0]->setting_value;
 				$settings = json_decode($config, true);
+				$settings = $settings[$path[0]];
 				$keys = array_keys($settings);
 
 				$x = 0;
+				$activeSetting = null;
 				foreach ($settings as $setting) {
 					if($setting == 1 | $setting = "true")
 					{
@@ -61,6 +63,9 @@
 
 					$x++;
 				}
+
+				if (!$activeSetting)
+					return false;
 
 				return $activeSetting;
 			}
@@ -75,6 +80,7 @@
 				$config = $db->get('config', array('setting_name', '=', $path[0]));
 				$config = $config->results()[0]->setting_value;
 				$settings = json_decode($config, true);
+				$settings = $settings[$path[0]];
 
 				return $settings;
 			}

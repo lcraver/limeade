@@ -8,17 +8,22 @@ $user = new User();
 if($user->isLoggedIn()) {
 ?>
 
-<section>
-<p>Hello <a href="profile.php?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->name); ?></a></p>
+<div class="pure-u-1" id="main">
+	<div class="header">
+    	<h1>Limeade</h1>
+    	<h2>80% PHP, 20% CSS, AND 100% REAL FRUIT JUICE</h2>
+    </div>
 
-<p>Username: <?php echo escape($user->data()->username); ?></p>
-<p>Email: <?php echo escape($user->data()->email); ?></p>
-
-<ul>
-	<li><a href="update.php">Update Profile</a></li>
-	<li><a href="changepassword.php">Change Password</a></li>
-	<li><a href="logout.php">Logout</a></li>
-</ul>
+    <div class="content">
+    	<div class="pure-g-r grid-example">
+    		 <div class="pure-u-1 l-centered">
+                <div class="1-box">
+                    <p>Home Page</p>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
 
 <?php
 
@@ -27,7 +32,7 @@ if($user->isLoggedIn()) {
 	}
 
 } else {
-	echo '<section><p>You need to <a href="login.php">login</a> or <a href="register.php">register</a>!</p></section>';
+	echo '<section><p>You need to <a href="login">login</a> or <a href="register">register</a>!</p></section>';
 }
 ?>
 </section>

@@ -10,7 +10,7 @@
     closedir($fpJS);
 
     foreach ($resultsJS as $resultJS) {
-        echo '<script src="'.$dirJS.'/'.$resultJS.'"></script>';
+        echo '<script src="'.Config::get('site/homeurl').'/'.$dirJS.'/'.$resultJS.'"></script>';
     }
 
 ?>

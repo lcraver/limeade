@@ -22,7 +22,7 @@
 				$login = $user->login(Input::get('Username'), Input::get('Password'), $remember);
 
 				if($login) {
-					Redirect::to('index.php');
+					Redirect::to('index');
 				} else {
 					echo '<div id="flashTop">Sorry, logging in failed!</div>';
 				}
@@ -42,28 +42,37 @@
 
 ?>
 
-        <h1 class="large">Login</h1>
+	<div class="pure-u-1" id="main">
+		<div class="header">
+        	<h1>Login Fool!</h1>
+        	<h2>Enter your account's information.</h2>
+        </div>
 
         <div class="content">
-            <p>
-				<form class="pure-form" action="" method="post">
-					<fieldset>
+            <form class="pure-form pure-g" action="" method="post">
+				<div class="pure-u-1-2">
+					<label for="Username">Username</label>
+					<input class="pure-input-1" type="text" name="Username" id="Username" value="<?php echo escape(Input::get('username')); ?>">
+				</div>
 
-						<input type="text" name="Username" id="Username" value="<?php echo escape(Input::get('username')); ?>" placeholder="Username">
+				<div class="pure-u-1-2">
+					<label for="Password">Password</label>
+					<input class="pure-input-1" type="password" name="Password" id="Password" autocomplete="off">
+				</div>
 
-						<input type="password" name="Password" id="Password" autocomplete="off" placeholder="Password">
+				<div class="pure-u-1-2">
+					<label for="Remember" class="pure-checkbox">
+						<input type="checkbox" name="Remember" id="Remember"> Remember Me
+					</label>
+				</div>
 
-						<label for="Remember">
-							<input type="checkbox" name="Remember" id="Remember"> Remember Me
-						</label>
-
-						<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-						
-						<button type="submit" class="pure-button pure-button-primary">
-							Login
-						</button>
-
-					</fieldset>
-				</form>
-			</p>
+				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+				
+				<div class="pure-u-1-2">
+					<button type="submit" class="pure-button pure-button-primary">
+						Login
+					</button>
+				</div>
+			</form>
         </div>
+    </div>

@@ -7,13 +7,31 @@
 
     require_once 'app/core/Init.php';
 
-    /*Loading template files the 2 methods available*/
+    $theme = Config::getDBActiveSetting('theme');
 
-    $head = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/header.tpl.php");
-    $page = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/main.tpl.php");
-    $navbar = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/navbar.tpl.php");
-    $content = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/pages/index.tpl.php");
-    $footer = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/footer.tpl.php");
+    /*Loading template files the 2 methods available*/
+    $head = new Template("app/themes/".$theme."/template/header.tpl.php");
+    $page = new Template("app/themes/".$theme."/template/main.tpl.php");
+    $navbar = new Template("app/themes/".$theme."/template/navbar.tpl.php");
+
+    if ($url = Input::get('url')) {
+
+        $url = explode('/', $url);
+
+        if (isset($url[0])) {
+            $contentLink = $url[0];
+        } 
+    }
+    else {
+            $contentLink = 'index';
+        }
+
+    $content = new Template("app/themes/".$theme."/template/pages/".$contentLink.".tpl.php");
+    $footer = new Template("app/themes/".$theme."/template/footer.tpl.php");
+
+    if (isset($url[1])) {
+        $content->set("value", $url[1]);
+    }
 
     /*Setting variables using the 2 methods*/
     $page->title = "Signup";

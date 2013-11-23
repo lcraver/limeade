@@ -17,16 +17,44 @@
             <a class="pure-menu-heading" href="<?php echo Config::get('site/homeurl'); ?>"><?php echo Config::get('site/title'); ?></a>
 
             <ul>
-                <li><a href="http://purecss.io/base/">Base</a></li>
-                <li><a href="http://purecss.io/grids/">Grids</a></li>
-                <li><a href="http://purecss.io/forms/">Forms</a></li>
-                <li><a href="http://purecss.io/buttons/">Buttons</a></li>
+                <?php 
 
-                <li class="menu-item-divided">
-                    <a href="https://github.com/Limestudios/limeade">Github Repo</a>
-                </li>
-                <li><a href="https://github.com/Limestudios">Liam's Github</a></li>
-                <li><a href="https://github.com/Limestudios">Patrick's Github</a></li>	
+                    $navbar = Config::getDBSettings('navbar');
+
+                    foreach ($navbar as $bar) {
+                        foreach ($bar as $key => $value) {
+                            switch ($key) {
+                                case 'devide':
+                                    echo '<li class="menu-item-divided"></li>';
+                                    break;
+                                
+                                default:
+                                    echo '<li><a href="'.Config::get('site/homeurl').'/'.$value.'">'.$key.'</a></li>';
+                                    break;
+                            }
+                        }
+                    }
+                ?>
+
+                    <li class="menu-item-divided"></li>
+
+                <?php
+                    $user = new User();
+                    if($user->isLoggedIn()) {
+                ?>
+
+                    <li><a href="<?php echo Config::get('site/homeurl'); ?>/profile/<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->username); ?></a></li>
+                    <li><a href="<?php echo Config::get('site/homeurl'); ?>/account">My Account</a></li>
+                    <li><a href="<?php echo Config::get('site/homeurl'); ?>/logout">Logout</a></li>
+
+                <?php
+                    } else {
+                ?>
+                    <li><a href="login">Login</a></li>
+                    <li><a href="register">Register</a></li>
+                <?php    
+                    }
+                ?>
             </ul>
         </div>
     </div>

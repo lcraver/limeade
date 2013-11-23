@@ -10,7 +10,7 @@ while ($fileCSS = readdir($fpCSS)) {
 closedir($fpCSS);
 
 foreach ($resultsCSS as $resultCSS) {
-	echo '<link rel="stylesheet" href="'.$dirCSS.'/'.$resultCSS.'">';
+	echo '<link rel="stylesheet" href="'.Config::get('site/homeurl').'/'.$dirCSS.'/'.$resultCSS.'">';
 }
 
 ?>

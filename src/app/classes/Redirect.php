@@ -13,7 +13,7 @@
 					}
 				}
 
-				header('Location: ' . $location);
+				header('Location: ' . Config::get('site/homeurl') .'/'. $location);
 				exit();
 			}
 		}

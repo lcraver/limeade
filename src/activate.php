@@ -19,10 +19,10 @@
 				));
 
 				Session::flash('home', 'Your account has been activated and you can now login!');
-				Redirect::to('index.php');
+				Redirect::to('index');
 			} else {
 				Session::flash('home', 'Your account could not be activated!');
-				Redirect::to('index.php');
+				Redirect::to('index');
 			}
 
 		} catch(Exception $e) {

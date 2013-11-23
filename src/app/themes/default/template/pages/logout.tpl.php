@@ -4,6 +4,6 @@
 	$user->logout();
 
 	Session::flash('home', 'You have been logged out!');
-	Redirect::to('index.php');
+	Redirect::to('index');
 
 ?>

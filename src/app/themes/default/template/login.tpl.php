@@ -22,7 +22,7 @@
 				$login = $user->login(Input::get('Username'), Input::get('Password'), $remember);
 
 				if($login) {
-					Redirect::to('index.php');
+					Redirect::to('index');
 				} else {
 					echo '<div id="flashTop">Sorry, logging in failed!</div>';
 				}
