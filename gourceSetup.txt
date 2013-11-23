@@ -1,0 +1,5 @@
+cd C:\wamp\www\limeade
+
+C:\Users\Liam\AppData\Local\Gource\gource.exe --seconds-per-day 2 --title "Limeade" -1280x720 -o gource.ppm C:\wamp\www\limeade
+
+C:\Users\Liam\AppData\Local\FFMPEG\bin\ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i gource.ppm -vcodec libx264 -preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0 gource.x264.avi

@@ -28,7 +28,7 @@
 
 				$path = explode('/', $path);
 				$config = $db->get('config', array('setting_name', '=', $path[0]));
-				$config = $config->results()[0]->setting_value;
+				$config = $config->first()->setting_value;
 				$settings = json_decode($config, true);
 
 				foreach($path as $bit){
@@ -48,7 +48,7 @@
 
 				$path = explode('/', $path);
 				$config = $db->get('config', array('setting_name', '=', $path[0]));
-				$config = $config->results()[0]->setting_value;
+				$config = $config->first()->setting_value;
 				$settings = json_decode($config, true);
 				$settings = $settings[$path[0]];
 				$keys = array_keys($settings);
