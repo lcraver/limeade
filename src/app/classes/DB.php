@@ -150,7 +150,7 @@
 		}
 
 		public function first() {
-			return $this->results()[0];
+			return $this->_results[0];
 		}
 
 		public function error() {

@@ -1,27 +1,25 @@
 <?php
+    /*
+     * Here we setup the a signup page
+     * Showing an example of using a template within another template
+     * here we put the signup form inside our main template
+     */
 
-	require_once 'app/core/Init.php';
+    require_once 'app/core/Init.php';
 
-	if(!$username = Input::get('user')) {
-		Redirect::to('index.php');
-	} else {
-		$user = new User($username);
+    /*Loading template files the 2 methods available*/
 
-		if(!$user->exists()) {
-			Redirect::to(404);
-		} else {
-			$data = $user->data();
-		}
-		?>
+    $head = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/header.tpl.php");
+    $page = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/main.tpl.php");
+    $navbar = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/navbar.tpl.php");
+    $content = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/pages/profile.tpl.php");
+    $footer = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/footer.tpl.php");
 
-		<section>
-			<h3><?php echo escape($data->username); ?></h3>
-			<p>Full Name : <?php echo escape($data->name); ?></p>
-		</section>
-		<?php
-	}
-
-?>
-
-    </div>
-</div>
+    /*Setting variables using the 2 methods*/
+    $page->title = "Signup";
+    $page->set("head", $head->parse());
+    $page->set("navbar", $navbar->parse());
+    $page->set("content", $content->parse());
+    $page->set("footer", $footer->parse());
+    /*Outputting the data to the end user*/
+    $page->publish();

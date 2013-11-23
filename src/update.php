@@ -1,54 +1,25 @@
 <?php
+    /*
+     * Here we setup the a signup page
+     * Showing an example of using a template within another template
+     * here we put the signup form inside our main template
+     */
 
-	require_once 'app/core/Init.php';
+    require_once 'app/core/Init.php';
 
-	$user = new User();
+    /*Loading template files the 2 methods available*/
 
-	if(!$user->isLoggedIn()) {
-		Redirect::to('index.php');
-	}
+    $head = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/header.tpl.php");
+    $page = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/main.tpl.php");
+    $navbar = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/navbar.tpl.php");
+    $content = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/pages/update.tpl.php");
+    $footer = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/footer.tpl.php");
 
-	if(Input::exists()) {
-		if(Token::check(Input::get('token'))) {
-			$validate = new Validate();
-			$validation = $validate->check($_POST, array(
-				'name' =>array(
-					'required' => true,
-					'min' => 2,
-					'max' => 50
-				)
-			));
-
-			if($validation->passed()) {
-				try {
-					$user->update(array(
-						'name' => Input::get('name')
-					));
-
-					Session::flash('home', 'Your details have been updated.');
-					Redirect::to('index.php');
-				} catch(Exception $e) {
-					die($e->getMessage());
-				}
-			} else {
-				foreach ($validation->errors() as $error) {
-					echo $error, '</br>';
-				}
-			}
-		}
-	}
-?>
-
-<section>
-	<article>
-		<form action="" method="post">
-			<div class="field">
-				<label for="name">Name</label>
-				<input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
-			</div>
-
-			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-			<input type="submit" value="Update">
-		</form>
-	</article>
-</section>
+    /*Setting variables using the 2 methods*/
+    $page->title = "Signup";
+    $page->set("head", $head->parse());
+    $page->set("navbar", $navbar->parse());
+    $page->set("content", $content->parse());
+    $page->set("footer", $footer->parse());
+    /*Outputting the data to the end user*/
+    $page->publish();

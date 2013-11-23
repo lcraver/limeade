@@ -1,35 +1,25 @@
 <?php
+    /*
+     * Here we setup the a signup page
+     * Showing an example of using a template within another template
+     * here we put the signup form inside our main template
+     */
 
-require_once 'app/core/Init.php';
+    require_once 'app/core/Init.php';
 
-if(Session::exists('home')) {
-	echo '<p>' . Session::flash('home') . '</p>';
-}
+    /*Loading template files the 2 methods available*/
 
-$user = new User();
-if($user->isLoggedIn()) {
-?>
+    $head = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/header.tpl.php");
+    $page = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/main.tpl.php");
+    $navbar = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/navbar.tpl.php");
+    $content = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/pages/index.tpl.php");
+    $footer = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/footer.tpl.php");
 
-<section>
-<p>Hello <a href="profile.php?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->name); ?></a></p>
-
-<p>Username: <?php echo escape($user->data()->username); ?></p>
-<p>Email: <?php echo escape($user->data()->email); ?></p>
-
-<ul>
-	<li><a href="update.php">Update Profile</a></li>
-	<li><a href="changepassword.php">Change Password</a></li>
-	<li><a href="logout.php">Logout</a></li>
-</ul>
-
-<?php
-
-	if($user->hasPermission('admin')) {
-		echo '<p>You are an admin</p>';
-	}
-
-} else {
-	echo '<section><p>You need to <a href="login.php">login</a> or <a href="register.php">register</a>!</p></section>';
-}
-?>
-</section>
+    /*Setting variables using the 2 methods*/
+    $page->title = "Signup";
+    $page->set("head", $head->parse());
+    $page->set("navbar", $navbar->parse());
+    $page->set("content", $content->parse());
+    $page->set("footer", $footer->parse());
+    /*Outputting the data to the end user*/
+    $page->publish();

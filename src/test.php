@@ -12,7 +12,7 @@
     $head = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/header.tpl.php");
     $page = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/main.tpl.php");
     $navbar = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/navbar.tpl.php");
-    $content = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/pages/change-password.tpl.php");
+    $content = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/login.tpl.php");
     $footer = new Template("app/themes/".Config::getDBActiveSetting('theme')."/template/footer.tpl.php");
 
     /*Setting variables using the 2 methods*/
