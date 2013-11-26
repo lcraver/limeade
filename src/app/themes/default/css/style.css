@@ -31,3 +31,8 @@
 .header {
   margin: 0 0 20px 0 !important;
 }
+
+footer {
+  height: 10px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…R0aD0iOSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojMTQyYTA2Ii8+CiAgICA8L3N2Zz4K) repeat-x top left;
+}

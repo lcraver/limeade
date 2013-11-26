@@ -7,6 +7,8 @@
     <body>
     	<?php print $this->navbar; ?>
         <?php print $this->content; ?>
-        <?php print $this->footer; ?>
+        <footer>
+            <?php print $this->footer; ?>
+        </footer>
     </body>
 </html>
