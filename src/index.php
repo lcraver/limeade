@@ -34,7 +34,7 @@
     }
 
     /*Setting variables using the 2 methods*/
-    $page->title = "Signup";
+    $page->title = Config::get('site/title').' - '.$contentLink;
     $page->set("head", $head->parse());
     $page->set("navbar", $navbar->parse());
     $page->set("content", $content->parse());
